@@ -7,8 +7,8 @@ import productRoute from './src/routes/productRoute.js'
 import { connectDB } from './src/db.js'
 import cookieParser from 'cookie-parser'
 import userRoute from './src/routes/userRoute.js'
-
-
+import { PORT } from './src/config.js'
+import categoryRoute from './src/routes/categoryRoute.js'
 
 //Ejecucion de express para inicializar el servidor
 const app = express();
@@ -34,11 +34,12 @@ app.use(bodyParser.urlencoded({extended: true}))
 connectDB()
 
 //rutas
+/// prefijo: api | agrupador: product
 app.use("/api/product", productRoute)
 app.use("/api/user", userRoute)
+app.use("/api/category", categoryRoute)
 
 
-
-app.listen(3000, () => {
+app.listen(PORT, () => {
     console.log("Server running")
 })

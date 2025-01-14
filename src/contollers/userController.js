@@ -2,6 +2,7 @@
 import User from "../models/userModel.js";
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
+import { SECRET } from "../config.js";
 
 export const getUsers = async (req, res) => {
   try {
@@ -62,7 +63,7 @@ export const validate = async (req, res) => {
             }
             //El token para ser valido debe ser firmado
             //1. payload, 2. secret, 3. duracion
-            const token = jwt.sign(payload, "secret", {expiresIn: "1h"})
+            const token = jwt.sign(payload, SECRET, {expiresIn: "1h"})
             const role = userFound.role;
             return res.status(200).json({ message: "Logged in", token, role, user: {id: userFound._id, email: userFound.email} })
         } else {

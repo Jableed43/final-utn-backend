@@ -6,7 +6,7 @@ import { createUser, getUsers, validate } from "../contollers/userController.js"
 const userRoute = Router();
 
 
-//generar las rutas
+//generar las rutas (metodo http, path, controlador-servicio)
 userRoute.get("/get", getUsers)
 userRoute.post("/create", createUser)
 userRoute.post("/login", validate)
